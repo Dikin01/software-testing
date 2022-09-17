@@ -1,6 +1,6 @@
-using Calculator.Interfaces;
+using MyCalculator.Interfaces;
 
-namespace Calculator;
+namespace MyCalculator.Models;
 
 public class Calculator : ICalculator
 {
@@ -14,7 +14,7 @@ public class Calculator : ICalculator
     {
         if (Math.Abs(b) < 10e-8)
         {
-            throw new ArithmeticException();
+            throw new DivideByZeroException($"|{nameof(b)}| must be greater than 10e-8");
         }
 
         return a / b;

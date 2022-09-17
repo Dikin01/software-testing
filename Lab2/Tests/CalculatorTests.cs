@@ -1,309 +1,209 @@
+using MyCalculator.Interfaces;
+using MyCalculator.Models;
+
 namespace Tests;
 
 public class CalculatorTests
 {
-    # region Sum function
+    private readonly ICalculator _calculator = new Calculator();
+    
+    # region Sum
     
     [Fact]
-    public void TestSumFunctionWithPositiveNumbers()
+    public void Sum_ShouldReturn5_When1And1()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Sum(2, 3);
-
-        // Assert
-        Assert.Equal(5, result);
+        var result = _calculator.Sum(1, 1);
+        
+        result.Should().Be(2);
     }
     
     [Fact]
-    public void TestSumFunctionWithPositiveAndNegativeNumbers()
+    public void Sum_ShouldReturn0_When1AndMinus1()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Sum(2, -5);
-
-        // Assert
-        Assert.Equal(-3, result);
+        var result = _calculator.Sum(1, -1);
+        
+        result.Should().Be(0);
     }
     
     [Fact]
-    public void TestSumFunctionWithNegativeAndPositiveNumbers()
+    public void Sum_ShouldReturn0_WhenMinus1And1()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
+        var result = _calculator.Sum(-1, 1);
 
-        // Act
-        var result = calculator.Sum(-3, 4);
-
-        // Assert
-        Assert.Equal(1, result);
+        result.Should().Be(0);
     }
     
     [Fact]
-    public void TestSumFunctionWithNegativeNumbers()
+    public void Sum_ShouldReturnMinus2_WhenMinus1AndMinus1()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
+        var result = _calculator.Sum(-1, -1);
 
-        // Act
-        var result = calculator.Sum(-5, -10);
-
-        // Assert
-        Assert.Equal(-15, result);
+        result.Should().Be(-2);
     }
     
     # endregion
     
-    # region Subtract function
+    # region Subtract
     
     [Fact]
     public void TestSubtractFunctionWithPositiveNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Subtract(10, 3);
-
-        // Assert
+        var result = _calculator.Subtract(10, 3);
+        
         Assert.Equal(7, result);
     }
     
     [Fact]
     public void TestSubtractFunctionWithPositiveAndNegativeNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Subtract(10, -5);
-
-        // Assert
+        var result = _calculator.Subtract(10, -5);
+        
         Assert.Equal(15, result);
     }
     
     [Fact]
     public void TestSubtractFunctionWithNegativeAndPositiveNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Subtract(-10, 5);
-
-        // Assert
+        var result = _calculator.Subtract(-10, 5);
+        
         Assert.Equal(-15, result);
     }
     
     [Fact]
     public void TestSubtractFunctionWithNegativeNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Subtract(-2, -3);
-
-        // Assert
+        var result = _calculator.Subtract(-2, -3);
+        
         Assert.Equal(1, result);
     }
     
     # endregion
     
-    # region Multiply function
+    # region Multiply
     
     [Fact]
     public void TestMultiplyFunctionWithPositiveNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Multiply(5, 11);
-
-        // Assert
+        var result = _calculator.Multiply(5, 11);
+        
         Assert.Equal(55, result);
     }
     
     [Fact]
     public void TestMultiplyFunctionWithPositiveAndNegativeNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Multiply(7, -8);
-
-        // Assert
+        var result = _calculator.Multiply(7, -8);
+        
         Assert.Equal(-56, result);
     }
     
     [Fact]
     public void TestMultiplyFunctionWithNegativeAndPositiveNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Multiply(-6, 9);
-
-        // Assert
+        var result = _calculator.Multiply(-6, 9);
+        
         Assert.Equal(-54, result);
     }
     
     [Fact]
     public void TestMultiplyFunctionWithNegativeNumbers()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Multiply(-3, -4);
-
-        // Assert
+        var result = _calculator.Multiply(-3, -4);
+        
         Assert.Equal(12, result);
     }
     
     # endregion
     
-    # region Divide function when result > 1
+    # region Divide when result > 1
     
     [Fact]
     public void TestDivideFunctionWithPositiveNumbersWhenResultMoreThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(10, 3);
-
-        // Assert
+        var result = _calculator.Divide(10, 3);
+        
         Assert.Equal(3.3333, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithPositiveAndNegativeNumbersWhenResultMoreThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(10, -4);
-
-        // Assert
+        var result = _calculator.Divide(10, -4);
+        
         Assert.Equal(-2.5, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithNegativeAndPositiveNumbersWhenResultMoreThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(-12, 5);
-
-        // Assert
+        var result = _calculator.Divide(-12, 5);
+        
         Assert.Equal(-2.4, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithNegativeNumbersWhenResultMoreThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(-12, -7);
-
-        // Assert
+        var result = _calculator.Divide(-12, -7);
+        
         Assert.Equal(1.71428571, result, 4);
     }
     
     # endregion
     
-    # region Divide function when result < 1
+    # region Divide when result < 1
     
     [Fact]
     public void TestDivideFunctionWithPositiveNumbersWhenResultLessThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(3, 7);
-
-        // Assert
+        var result = _calculator.Divide(3, 7);
+        
         Assert.Equal(0.42857143, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithPositiveAndNegativeNumbersWhenResultLessThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(4, -9);
-
-        // Assert
+        var result = _calculator.Divide(4, -9);
+        
         Assert.Equal(-0.44444444, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithNegativeAndPositiveNumbersWhenResultLessThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(-1, 6);
-
-        // Assert
+        var result = _calculator.Divide(-1, 6);
+        
         Assert.Equal(-0.16666667, result, 4);
     }
     
     [Fact]
     public void TestDivideFunctionWithNegativeNumbersWhenResultLessThenOne()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act
-        var result = calculator.Divide(-6, -11);
-
-        // Assert
+        var result = _calculator.Divide(-6, -11);
+        
         Assert.Equal(0.54545455, result, 4);
     }
     
     # endregion
 
-    #region Divide function throw exception
+    #region Divide throw exception
 
     [Fact]
     public void TestDivideFunctionWhenSecondArgumentTooSmall()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
-
-        // Act & Assert
-        Assert.Throws<ArithmeticException>(() => { calculator.Divide(5, 0.0000000001); });
+        var act = () => _calculator.Divide(5, 0.0000000001);
+        
+        act.Should().Throw<DivideByZeroException>();
     }
     
     [Fact]
     public void TestDivideFunctionWhenBothArgumentsTooSmall()
     {
-        // Arrange
-        var calculator = new Calculator.Calculator();
+        var act = () => _calculator.Divide(0.0000000002, 0.0000000001);
 
-        // Act & Assert
-        Assert.Throws<ArithmeticException>(() => { calculator.Divide(0.0000000002, 0.0000000001); });
+        act.Should().Throw<DivideByZeroException>();
     }
     
     #endregion
-    
 }

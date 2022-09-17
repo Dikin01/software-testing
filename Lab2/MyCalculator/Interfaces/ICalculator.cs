@@ -1,4 +1,4 @@
-namespace Calculator.Interfaces;
+namespace MyCalculator.Interfaces;
 
 public interface ICalculator
 {
