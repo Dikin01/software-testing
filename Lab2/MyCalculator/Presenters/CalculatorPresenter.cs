@@ -1,6 +1,6 @@
-using Calculator.Interfaces;
+using MyCalculator.Interfaces;
 
-namespace Calculator;
+namespace MyCalculator.Presenters;
 
 public class CalculatorPresenter :ICalculatorPresenter
 {
