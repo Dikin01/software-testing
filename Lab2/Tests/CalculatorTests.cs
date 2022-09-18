@@ -19,77 +19,30 @@ public class CalculatorTests
         result.Should().Be(expected);
     }
 
-    # region Subtract
-
-    [Fact]
-    public void TestSubtractFunctionWithPositiveNumbers()
+    [Theory]
+    [InlineData(2, 1, 1)]
+    [InlineData(1, -1, 2)]
+    [InlineData(-1, 1, -2 )]
+    [InlineData(-1, -1, 0)]
+    public void Subtract_ShouldReturnExpectedNumber(double a, double b, double expected)
     {
-        var result = _calculator.Subtract(10, 3);
+        var result = _calculator.Subtract(a, b);
 
-        Assert.Equal(7, result);
+        result.Should().Be(expected);
     }
 
-    [Fact]
-    public void TestSubtractFunctionWithPositiveAndNegativeNumbers()
+    [Theory]
+    [InlineData(2, 1, 2)]
+    [InlineData(1, -1, -1)]
+    [InlineData(-2, 1, -2 )]
+    [InlineData(-1, -2, 2)]
+    public void Multiply_ShouldReturnExpectedNumber(double a, double b, double expected)
     {
-        var result = _calculator.Subtract(10, -5);
+        var result = _calculator.Multiply(a, b);
 
-        Assert.Equal(15, result);
+        result.Should().Be(expected);
     }
-
-    [Fact]
-    public void TestSubtractFunctionWithNegativeAndPositiveNumbers()
-    {
-        var result = _calculator.Subtract(-10, 5);
-
-        Assert.Equal(-15, result);
-    }
-
-    [Fact]
-    public void TestSubtractFunctionWithNegativeNumbers()
-    {
-        var result = _calculator.Subtract(-2, -3);
-
-        Assert.Equal(1, result);
-    }
-
-    # endregion
-
-    # region Multiply
-
-    [Fact]
-    public void TestMultiplyFunctionWithPositiveNumbers()
-    {
-        var result = _calculator.Multiply(5, 11);
-
-        Assert.Equal(55, result);
-    }
-
-    [Fact]
-    public void TestMultiplyFunctionWithPositiveAndNegativeNumbers()
-    {
-        var result = _calculator.Multiply(7, -8);
-
-        Assert.Equal(-56, result);
-    }
-
-    [Fact]
-    public void TestMultiplyFunctionWithNegativeAndPositiveNumbers()
-    {
-        var result = _calculator.Multiply(-6, 9);
-
-        Assert.Equal(-54, result);
-    }
-
-    [Fact]
-    public void TestMultiplyFunctionWithNegativeNumbers()
-    {
-        var result = _calculator.Multiply(-3, -4);
-
-        Assert.Equal(12, result);
-    }
-
-    # endregion
+    
 
     [Theory]
     [InlineData(10, 3, 3.3333333333333335)]
@@ -103,57 +56,26 @@ public class CalculatorTests
 
         result.Should().Be(expected);
     }
-
-    # region Divide when result < 1
-
-    [Fact]
-    public void TestDivideFunctionWithPositiveNumbersWhenResultLessThenOne()
+    
+    [Theory]
+    [InlineData(3, 7, 0.42857142857142855)]
+    [InlineData(4, -9, -0.4444444444444444)]
+    [InlineData(-1, 6, -0.16666666666666666)]
+    [InlineData(-6, -11, 0.5454545454545454)]
+    public void Divide_ShouldReturnExpectedNumber_WhenDivisibleIsSmallerThanDivisor(
+        double divisible, double divisor, double expected)
     {
-        var result = _calculator.Divide(3, 7);
+        var result = _calculator.Divide(divisible, divisor);
 
-        Assert.Equal(0.42857143, result, 4);
+        result.Should().Be(expected);
     }
-
-    [Fact]
-    public void TestDivideFunctionWithPositiveAndNegativeNumbersWhenResultLessThenOne()
-    {
-        var result = _calculator.Divide(4, -9);
-
-        Assert.Equal(-0.44444444, result, 4);
-    }
-
-    [Fact]
-    public void TestDivideFunctionWithNegativeAndPositiveNumbersWhenResultLessThenOne()
-    {
-        var result = _calculator.Divide(-1, 6);
-
-        Assert.Equal(-0.16666667, result, 4);
-    }
-
-    [Fact]
-    public void TestDivideFunctionWithNegativeNumbersWhenResultLessThenOne()
-    {
-        var result = _calculator.Divide(-6, -11);
-
-        Assert.Equal(0.54545455, result, 4);
-    }
-
-    # endregion
-
+    
     [Fact]
     public void Divide_ShouldThrowDivideByZeroException_WhenDivisorIsLessThanEpsilon()
     {
         const double divisible = 1;
         const double divisor = ICalculator.Epsilon / 2;
         var act = () => _calculator.Divide(divisible, divisor);
-
-        act.Should().Throw<DivideByZeroException>();
-    }
-
-    [Fact]
-    public void TestDivideFunctionWhenBothArgumentsTooSmall()
-    {
-        var act = () => _calculator.Divide(0.0000000002, 0.0000000001);
 
         act.Should().Throw<DivideByZeroException>();
     }
