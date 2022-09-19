@@ -20,10 +20,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./Lab2
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./Lab2/Lab2.sln --no-restore
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
