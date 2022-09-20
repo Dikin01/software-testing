@@ -33,7 +33,7 @@ public class CalculatorViewTests : IDisposable
     [Fact]
     public void InitializeView_ShouldThrowArgumentException_WhenStreamIsNotReadable()
     {
-        _stream = new TestStream(false);
+        _stream = new TestStream(canRead: false);
 
         var act = () => new CalculatorView(_stream);
         

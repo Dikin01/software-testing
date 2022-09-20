@@ -34,16 +34,38 @@ public class CalculatorPresenterTests
         _presenter = new CalculatorPresenter(_calculatorMock.Object, _calculatorViewMock.Object);
     }
     
-    // TODO: Добавить тесты, если аргумент(ы) нельзя запарсить к double
-
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void OnPlusClicked_ShouldDisplayError_WhenArgumentsCanNotBeParsed(string first, string second)
+    {
+        _calculatorViewMock.Setup(view => view.GetFirstArgumentAsString()).Returns(first);
+        _calculatorViewMock.Setup(view => view.GetSecondArgumentAsString()).Returns(second);
+        
+        _presenter.OnPlusClicked();
+        _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Exactly(2));
+    }
+    
     [Fact]
     public void OnPlusClicked_ShouldSumAndPrintResult_WhenArgumentsСanBeParsed()
     {
         _presenter.OnPlusClicked();
 
         _calculatorMock.Verify(calculator => calculator
-            .Sum(It.IsAny<double>(), It.IsAny<double>()), Times.Once());
+            .Sum(FirstArgument, SecondArgument), Times.Once());
         _calculatorViewMock.Verify(view => view.PrintResult(Result), Times.Once);
+    }
+    
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void OnMinusClicked_ShouldDisplayError_WhenArgumentsCanNotBeParsed(string first, string second)
+    {
+        _calculatorViewMock.Setup(view => view.GetFirstArgumentAsString()).Returns(first);
+        _calculatorViewMock.Setup(view => view.GetSecondArgumentAsString()).Returns(second);
+        
+        _presenter.OnMinusClicked();
+        _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Fact]
@@ -54,6 +76,18 @@ public class CalculatorPresenterTests
         _calculatorMock.Verify(calculator => calculator
             .Subtract(FirstArgument, SecondArgument), Times.Once());
         _calculatorViewMock.Verify(view => view.PrintResult(Result), Times.Once);
+    }
+    
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void OnDivideClicked_ShouldDisplayError_WhenArgumentsCanNotBeParsed(string first, string second)
+    {
+        _calculatorViewMock.Setup(view => view.GetFirstArgumentAsString()).Returns(first);
+        _calculatorViewMock.Setup(view => view.GetSecondArgumentAsString()).Returns(second);
+        
+        _presenter.OnDivideClicked();
+        _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Fact]
@@ -75,6 +109,18 @@ public class CalculatorPresenterTests
 
         _calculatorMock.Verify(calculator => calculator.Divide(FirstArgument, SecondArgument), Times.Once);
         _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Once);
+    }
+    
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void OnMultiplyClicked_ShouldDisplayError_WhenArgumentsCanNotBeParsed(string first, string second)
+    {
+        _calculatorViewMock.Setup(view => view.GetFirstArgumentAsString()).Returns(first);
+        _calculatorViewMock.Setup(view => view.GetSecondArgumentAsString()).Returns(second);
+        
+        _presenter.OnMultiplyClicked();
+        _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Fact]
