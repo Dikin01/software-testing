@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCalculator", "MyCalculato
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A9F3BD17-74E3-4747-ABD7-41250D049D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{1830760A-0656-4493-B089-B428AC4CE48C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "..\Lab3\WpfApp\WpfApp.csproj", "{1BD8CFF6-74C7-4878-BA79-A82C06BC6066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{A9F3BD17-74E3-4747-ABD7-41250D049D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F3BD17-74E3-4747-ABD7-41250D049D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9F3BD17-74E3-4747-ABD7-41250D049D25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1830760A-0656-4493-B089-B428AC4CE48C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1830760A-0656-4493-B089-B428AC4CE48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1830760A-0656-4493-B089-B428AC4CE48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1830760A-0656-4493-B089-B428AC4CE48C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD8CFF6-74C7-4878-BA79-A82C06BC6066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD8CFF6-74C7-4878-BA79-A82C06BC6066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD8CFF6-74C7-4878-BA79-A82C06BC6066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD8CFF6-74C7-4878-BA79-A82C06BC6066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
