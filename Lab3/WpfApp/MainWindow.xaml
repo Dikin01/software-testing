@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="OurCal" ResizeMode="NoResize" Height="175" Width="394">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="201*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="FirstArg" HorizontalAlignment="Left" Margin="29,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="50" Grid.Column="1" FontSize="18"/>
+        <TextBox x:Name="SecondArg" HorizontalAlignment="Left" Margin="29,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="50" Grid.Column="1" FontSize="18"/>
+        <Button x:Name="MultBtn" Content="*" HorizontalAlignment="Left" Margin="75,77,0,0" VerticalAlignment="Top" Width="50" FontSize="36" Height="50" Padding="1,1,1,1" Click="Mult_btn_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="SubBtn" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" FontSize="36" Height="50" Padding="1,-10,1,1" Margin="75,12,0,0" Click="Sub_btn_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="DivBtn" Content="/" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="50" FontSize="36" Height="50" Padding="1,-10,1,1" Click="Div_btn_Click"/>
+        <Button x:Name="SumBtn" Content="+" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="50" FontSize="36" Height="50" Padding="1,-10,1,1" Click="Sum_btn_Click"/>
+    </Grid>
+</Window>
