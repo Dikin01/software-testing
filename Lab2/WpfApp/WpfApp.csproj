@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyCalculator\MyCalculator.csproj" />
+  </ItemGroup>
+
 </Project>

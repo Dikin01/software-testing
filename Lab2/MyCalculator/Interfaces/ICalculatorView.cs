@@ -2,6 +2,26 @@ namespace MyCalculator.Interfaces;
 
 public interface ICalculatorView
 {
+    /// <summary>
+    /// Событие, срабатывающее при изменении идентификатора счета-источника
+    /// </summary>
+    event Action MultButtonClicked;
+
+    /// <summary>
+    /// Событие, срабатывающее при изменении идентификатора счета-источника
+    /// </summary>
+    event Action SumButtonClicked;
+
+    /// <summary>
+    /// Событие, срабатывающее при изменении идентификатора счета-источника
+    /// </summary>
+    event Action SubButtonClicked;
+
+    /// <summary>
+    /// Событие, срабатывающее при изменении идентификатора счета-источника
+    /// </summary>
+    event Action DivButtonClicked;
+
     /**
      * Displays the result of the calculation
      */

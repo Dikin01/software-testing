@@ -1,4 +1,5 @@
 using MyCalculator.Interfaces;
+using System.Globalization;
 
 namespace MyCalculator.Presenters;
 
@@ -11,6 +12,10 @@ public class CalculatorPresenter : ICalculatorPresenter
     {
         _calculator = calculator;
         _calculatorView = calculatorView;
+        _calculatorView.MultButtonClicked += OnMultiplyClicked;
+        _calculatorView.DivButtonClicked += OnDivideClicked;
+        _calculatorView.SubButtonClicked += OnMinusClicked;
+        _calculatorView.SumButtonClicked += OnPlusClicked;
     }
 
     public void OnPlusClicked()
@@ -66,6 +71,7 @@ public class CalculatorPresenter : ICalculatorPresenter
 
     private bool TryParseArgumentsAndHandleError(out double first, out double second)
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         var parseSuccess = double.TryParse(_calculatorView.GetFirstArgumentAsString(), out first);
         if (!parseSuccess)
             _calculatorView.DisplayError("Parse first argument error");

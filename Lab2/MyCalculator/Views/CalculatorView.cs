@@ -10,6 +10,11 @@ public class CalculatorView : ICalculatorView
     private string? _firstArgument;
     private string? _secondArgument;
 
+    public event Action? MultButtonClicked;
+    public event Action? SumButtonClicked;
+    public event Action? SubButtonClicked;
+    public event Action? DivButtonClicked;
+
     public CalculatorView(Stream stream)
     {
         _input = new StreamReader(stream);
