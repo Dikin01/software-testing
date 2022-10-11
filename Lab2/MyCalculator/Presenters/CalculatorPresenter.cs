@@ -5,6 +5,9 @@ namespace MyCalculator.Presenters;
 
 public class CalculatorPresenter : ICalculatorPresenter
 {
+    public const string FirstArgErrorMessage = "Parse first argument error";
+    public const string SecondArgErrorMessage = "Second first argument error";
+
     private readonly ICalculator _calculator;
     private readonly ICalculatorView _calculatorView;
 
@@ -74,11 +77,11 @@ public class CalculatorPresenter : ICalculatorPresenter
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         var parseSuccess = double.TryParse(_calculatorView.GetFirstArgumentAsString(), out first);
         if (!parseSuccess)
-            _calculatorView.DisplayError("Parse first argument error");
+            _calculatorView.DisplayError(FirstArgErrorMessage);
 
         parseSuccess = double.TryParse(_calculatorView.GetSecondArgumentAsString(), out second);
         if (!parseSuccess)
-            _calculatorView.DisplayError("Parse second argument error");
+            _calculatorView.DisplayError(SecondArgErrorMessage);
 
         return parseSuccess;
     }

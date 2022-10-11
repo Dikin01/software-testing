@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MessageWindow" Height="200" Width="500" WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" IsCancel="True" HorizontalAlignment="Center" Width="100" Margin="10">OK</Button>
-        <Label x:Name="MessageText" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center">Hello</Label>
+        <Button x:Name="ClsBtn" DockPanel.Dock="Bottom" IsCancel="True" HorizontalAlignment="Center" Width="100"
+                Margin="10">
+            OK
+        </Button>
+        <Label x:Name="TextMessage" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center">Hello</Label>
     </DockPanel>
 </Window>

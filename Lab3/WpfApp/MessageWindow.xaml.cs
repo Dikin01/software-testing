@@ -7,6 +7,6 @@ public partial class MessageWindow : Window
     public MessageWindow(string message)
     {
         InitializeComponent();
-        MessageText.Content = message;
+        TextMessage.Content = message;
     }
 }
