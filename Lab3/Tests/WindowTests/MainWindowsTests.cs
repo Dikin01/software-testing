@@ -1,4 +1,6 @@
 using FluentAssertions;
+using MyCalculator.Interfaces;
+using MyCalculator.Models;
 using MyCalculator.Presenters;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
@@ -26,7 +28,6 @@ public class MainWindowsTests : IDisposable
         var appCapabilities = new DesiredCapabilities();
         appCapabilities.SetCapability("app", AppId);
         appCapabilities.SetCapability("platformName", "Windows");
-        appCapabilities.SetCapability("deviceName ", "WindowsPC");
         _session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
 
         _session.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
@@ -44,9 +45,9 @@ public class MainWindowsTests : IDisposable
     [Fact]
     public void ClickOnMultiplyButton_ShouldShowResult_WhenArgsCanBeParsed()
     {
-        const string expected = "4";
+        const string expected = "-5";
         _firstArg.SendKeys("2");
-        _secondArg.SendKeys("2");
+        _secondArg.SendKeys("-2.5");
 
         _multButton.Click();
 
@@ -56,7 +57,7 @@ public class MainWindowsTests : IDisposable
 
     [Theory]
     [InlineData("", "a")]
-    [InlineData(" ", "123B45")]
+    [InlineData(" ", "123q45")]
     public void ClickOnMultiplyButton_ShouldShowResult_WhenArgsCanBeNotParsed(string first, string second)
     {
         var expected = new List<string>
@@ -68,6 +69,129 @@ public class MainWindowsTests : IDisposable
         _secondArg.SendKeys(second);
 
         _multButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    #endregion
+
+    #region ClickOnSubtractButton
+
+    [Fact]
+    public void ClickOnSubtractButton_ShouldShowResult_WhenArgsCanBeParsed()
+    {
+        const string expected = "-1";
+        _firstArg.SendKeys("2");
+        _secondArg.SendKeys("3");
+
+        _subButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void ClickOnSubtractButton_ShouldShowResult_WhenArgsCanBeNotParsed(string first, string second)
+    {
+        var expected = new List<string>
+        {
+            CalculatorPresenter.FirstArgErrorMessage,
+            CalculatorPresenter.SecondArgErrorMessage
+        };
+        _firstArg.SendKeys(first);
+        _secondArg.SendKeys(second);
+
+        _subButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    #endregion
+
+    #region ClickOnSumButton
+
+    [Fact]
+    public void ClickOnSumButton_ShouldShowResult_WhenArgsCanBeParsed()
+    {
+        const string expected = "-1.1";
+        _firstArg.SendKeys("2");
+        _secondArg.SendKeys("-3.1");
+
+        _sumButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void ClickOnSumButton_ShouldShowResult_WhenArgsCanBeNotParsed(string first, string second)
+    {
+        var expected = new List<string>
+        {
+            CalculatorPresenter.FirstArgErrorMessage,
+            CalculatorPresenter.SecondArgErrorMessage
+        };
+        _firstArg.SendKeys(first);
+        _secondArg.SendKeys(second);
+
+        _sumButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    #endregion
+
+    #region ClickOnDivideButton
+
+    [Fact]
+    public void ClickOnDivideButton_ShouldShowResult_WhenArgsCanBeParsed()
+    {
+        const string expected = "2";
+        _firstArg.SendKeys("6");
+        _secondArg.SendKeys("3");
+
+        _divButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+    
+    [Fact]
+    public void ClickOnDivideButton_ShouldShowResult_WhenSecondArgIsLessThanEpsilon()
+    {
+        const string secondArgText = "0";
+        _firstArg.SendKeys("1");
+        _secondArg.SendKeys(secondArgText);
+        var expected = string.Format(Calculator.DivideByZeroExceptionMessageFormatter, secondArgText, ICalculator.Epsilon);
+
+
+        _divButton.Click();
+
+        var result = CollectTextMessagesFromDialogWindows();
+        result.Should().Equal(expected);
+    }
+
+    [Theory]
+    [InlineData("", "a")]
+    [InlineData(" ", "123B45")]
+    public void ClickOnDivideButton_ShouldShowResult_WhenArgsCanBeNotParsed(string first, string second)
+    {
+        var expected = new List<string>
+        {
+            CalculatorPresenter.FirstArgErrorMessage,
+            CalculatorPresenter.SecondArgErrorMessage
+        };
+        _firstArg.SendKeys(first);
+        _secondArg.SendKeys(second);
+
+        _divButton.Click();
 
         var result = CollectTextMessagesFromDialogWindows();
         result.Should().Equal(expected);
