@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="OurCal" ResizeMode="NoResize" Height="175" Width="394">
+        Title="MyCalculatorUI" ResizeMode="NoResize" Height="175" Width="394">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="79*"/>
