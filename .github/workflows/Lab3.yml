@@ -21,5 +21,3 @@ jobs:
       run: dotnet restore ./Lab3
     - name: Build
       run: dotnet build ./Lab3 --no-restore
-    - name: Test
-      run: dotnet test ./Lab3 --no-build --verbosity normal
