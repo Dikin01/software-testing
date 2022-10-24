@@ -43,6 +43,7 @@ public class CalculatorPresenterTests
         _calculatorViewMock.Setup(view => view.GetSecondArgumentAsString()).Returns(second);
         
         _presenter.OnPlusClicked();
+        
         _calculatorViewMock.Verify(view => view.DisplayError(It.IsAny<string>()), Times.Exactly(2));
     }
     
